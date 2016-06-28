@@ -17,6 +17,8 @@ public class Test
     public void test()
     {
         File destDir = new File("tests-copy");
+        File destDirOnlyContent = new File("tests-copy-only-content");
+
         try
         {
             JNativeCopy.copyDirectory(new File("tests"), destDir);
@@ -27,11 +29,33 @@ public class Test
             Assert.fail(e.getMessage());
         }
 
+
+        try
+        {
+            JNativeCopy.copyDirectoryContent(new File("tests"), destDirOnlyContent);
+        }
+        catch (JNativeCopyException e)
+        {
+            e.printStackTrace();
+            Assert.fail(e.getMessage());
+        }
+
+
         Assert.assertTrue(destDir.exists());
 
         try
         {
             FileUtils.deleteDirectory(destDir);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            Assert.fail(e.getMessage());
+        }
+
+        try
+        {
+            FileUtils.deleteDirectory(destDirOnlyContent);
         }
         catch (IOException e)
         {

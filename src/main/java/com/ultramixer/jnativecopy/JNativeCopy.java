@@ -13,11 +13,34 @@ public class JNativeCopy
 {
     public static void copyDirectory(File srcDir, File destDir) throws JNativeCopyException
     {
+        copyDirectory(srcDir, destDir, false);
+    }
+
+    public static void copyDirectoryContent(File srcDir, File destDir) throws JNativeCopyException
+    {
+        copyDirectory(srcDir, destDir, true);
+    }
+
+    public static void copyDirectory(File srcDir, File destDir, boolean copyOnyDirectoryContent) throws JNativeCopyException
+    {
+        if (!destDir.exists())
+        {
+            destDir.mkdirs();
+        }
+
+        String srcDirS = srcDir.getAbsolutePath();
+        if (copyOnyDirectoryContent && !srcDirS.endsWith("/"))
+        {
+            srcDirS = srcDirS + "/";
+        }
+
+
         String line = "cp";
         CommandLine cmdLine = CommandLine.parse(line);
         cmdLine.addArgument("-a");
-        cmdLine.addArgument("-p");
-        cmdLine.addArgument(srcDir.getAbsolutePath());
+
+
+        cmdLine.addArgument(srcDirS);
         cmdLine.addArgument(destDir.getAbsolutePath());
 
         DefaultExecutor executor = new DefaultExecutor();
@@ -35,5 +58,6 @@ public class JNativeCopy
             throw new JNativeCopyException(e);
         }
     }
+
 
 }
