@@ -22,10 +22,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="JNativeCopy" />
         <module name="JNativeZip" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="JNativeCopy" target="1.6" />
       <module name="JNativeZip" target="1.6" />
       <module name="JNativeZip_main" target="1.6" />
       <module name="JNativeZip_test" target="1.6" />
