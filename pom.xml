@@ -5,7 +5,7 @@
 
     <groupId>com.ultramixer</groupId>
     <artifactId>JNativeCopy</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3.1</version>
     <packaging>jar</packaging>
     <name>JNativeCopy</name>
     <description>JNativeCopy is a Java wrapper for the native cp command line utility for Linux and Mac.</description>

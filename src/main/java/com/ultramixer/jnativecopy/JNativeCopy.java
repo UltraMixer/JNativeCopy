@@ -21,12 +21,12 @@ public class JNativeCopy
         copyDirectory(srcDir, destDir, true);
     }
 
-    public static void copyDirectory(File srcDir, File destDir, boolean preserveFileAttributes, boolean copyOnyDirectoryContent) throws JNativeCopyException
+    public static void copyDirectory(File srcDir, File destDir, boolean copyOnyDirectoryContent) throws JNativeCopyException
     {
         copyDirectory(srcDir, destDir, true, copyOnyDirectoryContent);
     }
 
-    public static void copyDirectory(File srcDir, File destDir, boolean copyOnyDirectoryContent) throws JNativeCopyException
+    public static void copyDirectory(File srcDir, File destDir, boolean preserveFileAttributes, boolean copyOnyDirectoryContent) throws JNativeCopyException
     {
         if (!destDir.exists())
         {
@@ -42,7 +42,12 @@ public class JNativeCopy
 
         String line = "cp";
         CommandLine cmdLine = CommandLine.parse(line);
-        cmdLine.addArgument("-a");
+        if (preserveFileAttributes)
+        {
+            cmdLine.addArgument("-a");
+        }
+
+        cmdLine.addArgument("-r");
 
 
         cmdLine.addArgument(srcDirS);

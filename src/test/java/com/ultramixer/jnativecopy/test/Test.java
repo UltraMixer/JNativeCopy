@@ -21,7 +21,7 @@ public class Test
 
         try
         {
-            JNativeCopy.copyDirectory(new File("tests"), destDir);
+            JNativeCopy.copyDirectory(new File("tests"), destDir,true,false);
         }
         catch (JNativeCopyException e)
         {
